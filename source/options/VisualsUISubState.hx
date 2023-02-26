@@ -124,6 +124,14 @@ class VisualsUISubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('Title Movement:',
+			"What should the Title movement be?",
+			'floatingTitlegf',
+			'string',
+			'only floating logo',
+			['only floating logo', 'not static gf and title only logo', 'all floating', 'none']);
+		addOption(option);
+
 		super();
 	}
 

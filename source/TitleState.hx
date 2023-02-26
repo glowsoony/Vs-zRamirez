@@ -35,6 +35,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import openfl.Assets;
+import openfl.Lib;
 
 using StringTools;
 typedef TitleData =
@@ -272,7 +273,8 @@ class TitleState extends MusicBeatState
 		add(bg);
 
 		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl.frames = Paths.getSparrowAtlas('Start_Screen_Assets');
+		logoBl.scale.set(0.8, 0.8);
 
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
@@ -370,8 +372,24 @@ class TitleState extends MusicBeatState
 		logo.antialiasing = ClientPrefs.globalAntialiasing;
 		// add(logo);
 
-		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
-		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+		if (ClientPrefs.floatingTitlegf == 'not static gf and title only logo') {
+			FlxTween.tween(gfDance, {y: gfDance.y + 50}, 0.9, {ease: FlxEase.quadInOut, type: PINGPONG});
+			FlxTween.tween(titleText, {y: titleText.y + 50}, 0.8, {ease: FlxEase.quadInOut, type: PINGPONG});
+		}
+		else if (ClientPrefs.floatingTitlegf == 'only floating logo'){
+			FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.8, {ease: FlxEase.quadInOut, type: PINGPONG});
+			FlxTween.tween(logo, {y: logoBl.y + 50}, 0.8, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+		}
+		else if (ClientPrefs.floatingTitlegf == 'all floating')
+		{
+			FlxTween.tween(gfDance, {y: gfDance.y + 50}, 0.9, {ease: FlxEase.quadInOut, type: PINGPONG});
+			FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.8, {ease: FlxEase.quadInOut, type: PINGPONG});
+			FlxTween.tween(logo, {y: logoBl.y + 50}, 0.8, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+			FlxTween.tween(titleText, {y: titleText.y + 50}, 0.8, {ease: FlxEase.quadInOut, type: PINGPONG});
+		}
+		else if (ClientPrefs.floatingTitlegf == 'none')
+		{
+		}
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -553,6 +571,8 @@ class TitleState extends MusicBeatState
 			}
 			#end
 		}
+
+		//FlxTween.tween(Lib.application.window, {y: Lib.application.window.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		if (initialized && pressedEnter && !skippedIntro)
 		{

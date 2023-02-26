@@ -77,6 +77,13 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			false);
 		addOption(option);
 
+		var option:Option = new Option('Camera Movement',
+			"If checked, camera will move when notes are hit.",
+			'cameraMovement',
+			'bool',
+			true);
+		addOption(option);
+
 		var option:Option = new Option('Hitsound Volume',
 			'Funny notes does \"Tick!\" when you hit them."',
 			'hitsoundVolume',
@@ -143,6 +150,14 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.minValue = 2;
 		option.maxValue = 10;
 		option.changeValue = 0.1;
+		addOption(option);
+
+		var option:Option = new Option('Hey Sound:',
+			"What Hey Sound Should It Play When Hey!",
+			'heySound',
+			'string',
+			'Ramirez',
+			['Ramirez', 'Hazard_404', 'none']);
 		addOption(option);
 
 		super();

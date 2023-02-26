@@ -25,6 +25,7 @@ class ClientPrefs {
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var ghostTapping:Bool = true;
 	public static var timeBarType:String = 'Time Left';
+	public static var floatingTitlegf:String = 'only floating logo';
 	public static var scoreZoom:Bool = true;
 	public static var noReset:Bool = false;
 	public static var healthBarAlpha:Float = 1;
@@ -33,6 +34,7 @@ class ClientPrefs {
 	public static var pauseMusic:String = 'Tea Time';
 	public static var checkForUpdates:Bool = true;
 	public static var comboStacking = true;
+	public static var cameraMovement:Bool = true;
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -53,6 +55,7 @@ class ClientPrefs {
 		'botplay' => false,
 		'opponentplay' => false
 	];
+	public static var heySound:String = 'Ramirez';
 
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var ratingOffset:Int = 0;
@@ -68,6 +71,8 @@ class ClientPrefs {
 		'note_down'		=> [S, DOWN],
 		'note_up'		=> [W, UP],
 		'note_right'	=> [D, RIGHT],
+
+		'qt_taunt'		=> [SHIFT, NONE],
 		
 		'ui_left'		=> [A, LEFT],
 		'ui_down'		=> [S, DOWN],
@@ -112,6 +117,7 @@ class ClientPrefs {
 		FlxG.save.data.arrowHSV = arrowHSV;
 		FlxG.save.data.ghostTapping = ghostTapping;
 		FlxG.save.data.timeBarType = timeBarType;
+		FlxG.save.data.floatingTitlegf = floatingTitlegf;
 		FlxG.save.data.scoreZoom = scoreZoom;
 		FlxG.save.data.noReset = noReset;
 		FlxG.save.data.healthBarAlpha = healthBarAlpha;
@@ -130,14 +136,15 @@ class ClientPrefs {
 		FlxG.save.data.pauseMusic = pauseMusic;
 		FlxG.save.data.checkForUpdates = checkForUpdates;
 		FlxG.save.data.comboStacking = comboStacking;
+		FlxG.save.data.heySound = heySound;
 	
-		FlxG.save.flush();
+		/*FlxG.save.flush();
 
 		var save:FlxSave = new FlxSave();
 		save.bind('controls_v2', CoolUtil.getSavePath()); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
 		save.data.customControls = keyBinds;
 		save.flush();
-		FlxG.log.add("Settings saved!");
+		FlxG.log.add("Settings saved!");*/
 	}
 
 	public static function loadPrefs() {
@@ -205,6 +212,9 @@ class ClientPrefs {
 		if(FlxG.save.data.timeBarType != null) {
 			timeBarType = FlxG.save.data.timeBarType;
 		}
+		if(FlxG.save.data.floatingTitlegf != null) {
+			floatingTitlegf = FlxG.save.data.floatingTitlegf;
+		}
 		if(FlxG.save.data.scoreZoom != null) {
 			scoreZoom = FlxG.save.data.scoreZoom;
 		}
@@ -267,6 +277,9 @@ class ClientPrefs {
 		if (FlxG.save.data.comboStacking != null)
 			comboStacking = FlxG.save.data.comboStacking;
 
+		if(FlxG.save.data.heySound != null) {
+			heySound = FlxG.save.data.heySound;
+		}
 		var save:FlxSave = new FlxSave();
 		save.bind('controls_v2', CoolUtil.getSavePath());
 		if(save != null && save.data.customControls != null) {
